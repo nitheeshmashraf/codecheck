@@ -53,6 +53,7 @@ app.use(passport.session());
 require('./config/passport')(passport);
 
 app.use('/users', users);
+// app.use('/coins', coins);
 
 // Index Route
 app.get('/', (req, res) => {
