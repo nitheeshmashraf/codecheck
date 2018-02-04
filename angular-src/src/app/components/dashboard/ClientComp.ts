@@ -14,3 +14,14 @@ export interface MainInv{
   InvNoNext:number,
   Locked:boolean
 }
+
+export interface itemVal{
+  Name: String,
+  Qty: number,
+  Rate:number,
+  Billed: number,
+  Tax:number,
+  TaxableAmnt:number,
+  Amount:number,
+  TaxAmnt:number
+}
