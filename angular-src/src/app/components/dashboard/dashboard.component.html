@@ -1,176 +1,149 @@
-<!-- <h2 class="page-header">Dashboard</h2>
-<p>Welcome to your Dashboard</p> -->
-
-<!-- <table>
-    <tr>
-        <td>
-            SASH INTERGRATED FOODSTUFF TRADING LLC<br/>
-            Arenco Bldg 4, Office G-05, Dubai Investment Park 1<br/>
-            Emirate, Dubai<br/>
-            TRN : 00000000000000000000<br/>
-            E-Mail : info@sashfoodstuff.ae<br/>
-        </td>
-        <td></td>
-        <td>
-            <br>
-            Dubai<br/>
-            TRN : {{trnNo}}<br/>
-            E-Mail : {{emailID}}<br/>
-        </td>
-    </tr>
-    <tr>
-        <td></td>
-        <td>Tax Invoice<br/>Tax Invoice</td>
-        <td></td>
-    </tr>
-    </table>
-    <table>
-    <tr>
-        <td>{{ClientCompany.Name}}<br>{{ClientCompany.Add1}}<br>{{ClientCompany.Add2}}<br>{{ClientCompany.Add3}}</td>
-        <td>
-            <table>
-                <tr>
-                    <td>Invoice No.<br/>{{MainInvVar.InvNoNext}}</td>
-                    <td>Dated<br/>{{dt | date : "shortDate"}}</td>
-                </tr>
-                <tr>
-                    <td>Buyer Order No.<br/>{{ClientCompany.BuyerOrderNo}}</td>
-                    <td>Dated<br/>{{dt | date : "shortDate"}}</td>
-                </tr>
-                <tr>
-                    <td>Despatched through<br/>{{ClientCompany.DespThru}}</td>
-                    <td>Place of Supply<br/>{{ClientCompany.PlaceOfSupply}}</td>
-                </tr>
-                <tr>
-                    <td>Mode/Terms of Payment<br/>{{ClientCompany.ModeOfPay}}</td>
-                    <td>{{ClientCompany.ModeOfPayAr}}</td>
-                </tr>
-            </table>
-        </td>
-    </tr>
-</table> -->
-
-
-<div id="page-wrap">
+<div style="border:1px solid black; padding: 10px;">
     
-            <textarea id="header">INVOICE</textarea>
-            
-            <div id="identity">
-                SASH INTERGRATED FOODSTUFF TRADING LLC<br/>
-                Arenco Bldg 4, Office G-05, Dubai Investment Park 1<br/>
-                Emirate, Dubai<br/>
-                TRN : 00000000000000000000<br/>
-                E-Mail : info@sashfoodstuff.ae<br/>
-                <!-- <textarea id="address">Chris Coyier
-    123 Appleseed Street
-    Appleville, WI 53719
-    
-    Phone: (555) 555-5555</textarea> -->
-    
-                <div id="logo">
-    
-                  <div id="logoctr">
-                    <a href="javascript:;" id="change-logo" title="Change logo">Change Logo</a>
-                    <a href="javascript:;" id="save-logo" title="Save changes">Save</a>
-                    |
-                    <a href="javascript:;" id="delete-logo" title="Delete logo">Delete Logo</a>
-                    <a href="javascript:;" id="cancel-logo" title="Cancel changes">Cancel</a>
-                  </div>
-    
-                  <div id="logohelp">
-                    <input id="imageloc" type="text" size="50" value="" /><br />
-                    (max width: 540px, max height: 100px)
-                  </div>
-                  <img id="image" src="assets/images/logo.png" alt="logo" />
-                </div>
-            
+            <div class="row">
+                <div class="col-sm-6"><span style="float: left;text-align:left;"><b>SASH INTERGRATED FOODSTUFF TRADING LLC</b> <br/>
+                    Arenco Bldg 4, Office G-05, Dubai Investment Park 1<br/>
+                    Emirate, Dubai<br/>
+                    TRN : {{trnNo}}<br/>
+                    E-Mail : info@sashfoodstuff.ae<br/></span></div>
+                <div class="col-sm-6"><span style="float: right;text-align:right;">Dubai<br> TRN : {{trnNo}}<br/>
+                    E-Mail : info@sashfoodstuff.ae<br/></span></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" align="center"><b>Tax Invoice</b></div>
             </div>
             
-            <div style="clear:both"></div>
-            
-            <div id="customer">
-    
-                <!-- <textarea id="customer-title">Widget Corp.
-    c/o Steve Widget</textarea> -->
-    {{ClientCompany.Name}}<br>{{ClientCompany.Add1}}<br>{{ClientCompany.Add2}}<br>{{ClientCompany.Add3}}
-                <table id="meta">
-                    <tr>
-                        <td class="meta-head">Invoice #</td>
-                        <td>{{MainInvVar.InvNoNext}}</td>
-                    </tr>
-                    <tr>
-    
-                        <td class="meta-head">Date</td>
-                        <td>{{dt | date : "shortDate"}}</td>
-                    </tr>
-                    <tr>
-                        <td class="meta-head">Amount Due</td>
-                        <td><div class="due">AED 875.00</div></td>
-                    </tr>
-    
-                </table>
-            
-            </div>
-            
-            <table id="items">
-            
-              <tr>
-                  <th>Item</th>
-                  <th>Description</th>
-                  <th>Unit Cost</th>
-                  <th>Quantity</th>
-                  <th>Price</th>
-              </tr>
-              
-              <tr class="item-row">
-                  <td class="item-name"><div class="delete-wpr">{{InvItem.Name}}<a class="delete" href="javascript:;" title="Remove row">X</a></div></td>
-                  <td class="description"><textarea>Mutton leg</textarea></td>
-                  <td><textarea class="cost">AED 650.00</textarea></td>
-                  <td><textarea class="qty">1</textarea></td>
-                  <td><span class="price">AED 650.00</span></td>
-              </tr>
-              
-              <tr class="item-row">
-                  <td class="item-name"><div class="delete-wpr"><textarea>SSL Renewals</textarea><a class="delete" href="javascript:;" title="Remove row">X</a></div></td>
-    
-                  <td class="description"><textarea>Yearly renewals of SSL certificates on main domain and several subdomains</textarea></td>
-                  <td><textarea class="cost">AED 75.00</textarea></td>
-                  <td><textarea class="qty">3</textarea></td>
-                  <td><span class="price">AED 225.00</span></td>
-              </tr>
-              
-              <tr id="hiderow">
-                <td colspan="5"><a id="addrow" href="javascript:;" title="Add a row">Add a row</a></td>
-              </tr>
-              
-              <tr>
-                  <td colspan="2" class="blank"> </td>
-                  <td colspan="2" class="total-line">Subtotal</td>
-                  <td class="total-value"><div id="subtotal">AED 875.00</div></td>
-              </tr>
-              <tr>
-    
-                  <td colspan="2" class="blank"> </td>
-                  <td colspan="2" class="total-line">Total</td>
-                  <td class="total-value"><div id="total">AED 875.00</div></td>
-              </tr>
-              <tr>
-                  <td colspan="2" class="blank"> </td>
-                  <td colspan="2" class="total-line">Amount Paid</td>
-    
-                  <td class="total-value"><textarea id="paid">AED 0.00</textarea></td>
-              </tr>
-              <tr>
-                  <td colspan="2" class="blank"> </td>
-                  <td colspan="2" class="total-line balance">Balance Due</td>
-                  <td class="total-value balance"><div class="due">AED 875.00</div></td>
-              </tr>
-            
-            </table>
-            
-            <div id="terms">
-              <h5>Terms</h5>
-              <textarea>NET 30 Days. Finance Charge of 1.5% will be made on unpaid balances after 30 days.</textarea>
-            </div>
-        
         </div>
+        <div style="border:1px solid black; padding: 10px;">
+            <div class="row">
+                <div class="col-sm-4"><span style="float: left;text-align:left;"><b>{{ClientCompany.Name}}</b><br>{{ClientCompany.Add1}} <br>{{ClientCompany.Add2}} <br>{{ClientCompany.Add3}} <br> </span></div>
+                <div class="col-sm-8">
+                    <div class="row" >
+                        <div class="col-sm-6">
+                            <span style="float: left;text-align:left;"><b>In#</b><br>{{currentInv}}</span>
+                            <span style="float: right;text-align:right;"><b>In#(AR)</b><br>{{currentInv}}</span>
+                        </div>
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>Date</b><br>{{ dt | date }}</span>
+                                <span style="float: right;text-align:right;"><b>Date(AR)</b><br>{{ dt | date }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>BuyersO#</b><br>{{ClientCompany.BuyerOrderNo}}</span>
+                                <span style="float: right;text-align:right;"><b>BuyersO#(AR)</b><br>{{ClientCompany.BuyerOrderNo}}</span>
+                        </div>
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>Dated#</b><br>{{ dt | date }}</span>
+                                <span style="float: right;text-align:right;"><b>Dated#(AR)</b><br>{{ dt | date }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>DespatchThru#</b><br>{{ClientCompany.DespThru}}</span>
+                                <span style="float: right;text-align:right;"><b>DespatchThru#(AR)</b><br>{{ClientCompany.DespThru}}</span>
+                        </div>
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>Place of Supp#</b><br>{{ClientCompany.PlaceOfSupply}}</span>
+                                <span style="float: right;text-align:right;"><b>Place of Supp#(AR)</b><br>{{ClientCompany.PlaceOfSupply}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <span style="float: left;text-align:left;"><b>Mode of Pay#</b><br>{{ClientCompany.ModeOfPay}}</span>
+                                <span style="float: right;text-align:right;"><b>Mode of Pay#(AR)</b><br>{{ClientCompany.ModeOfPay}}</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> 
+        <div align="center"  style="border:1px solid black;">
+                    
+                <div align="center"  style="border:1px solid black; padding: 10px;">
+                    <div class="row">
+                        <div class="col-sm-1">SL#</div>
+                        <div class="col-sm-2">Description</div>
+                        <div class="col-sm-1">Billed</div>
+                        <div class="col-sm-1">Rate</div>
+                        <div class="col-sm-1">Per</div>
+                        <div class="col-sm-1">Amount</div>
+                        <div class="col-sm-1">Vat%</div>
+                        <div class="col-sm-2">Amnt Taxable</div>
+                        <div class="col-sm-2">Tax AMnt</div>
+                    </div>
+                </div>   
+                <div align="center" class="row" style="padding: 10px;">
+                        <div class="col-sm-1">SL#</div>
+                        <div class="col-sm-2" align="left">{{InvItem.Name}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem.Billed}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem.Rate}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem.Qty}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem.Amount}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem.Tax}}</div>
+                        <div class="col-sm-2" style="text-align:right;">{{InvItem.TaxableAmnt}}</div>
+                        <div class="col-sm-2" style="text-align:right;">{{InvItem.TaxAmnt}}</div>
+                </div>
+                <div align="right"  style="border:1px solid black; padding: 10px;">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2">Total</div>
+                            <div class="col-sm-1">114.02 Kg</div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-1">3140.61</div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2">2991.6</div>
+                            <div class="col-sm-2">149</div>
+                        </div>
+                </div>   
+        </div>
+        <div   style="padding: 10px;">
+        <div class="row">
+            <div class="col-sm-9">
+                Amount Chargable in words
+            </div>
+            <div class="col-sm-1"style="text-align:right;">Vat%</div>
+            <div class="col-sm-1"style="text-align:right;">Taxable Amt</div>
+            <div class="col-sm-1"style="text-align:right;">Tax Amt</div>
+        </div>
+       <div id="spacer" class="row">
+          
+           <div class="col-sm-12">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>   
+            <u>Declaration</u> <br> We declare that the invoice shows the actual price of the goods described and that of particular....
+        </div>
+           
+       </div>
+       </div>
+       <div   style="border:1px solid black; padding: 10px;">
+     <div class="row">
+        <div class="col-sm-6" style="border-right:1px solid black;">
+            Customer seal and signature
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div class="col-sm-6">
+            <b>For SASH INTEGRATED FOODSTUFF TRADING LLC</b><br>
+            For SASH INTEGRATED FOODSTUFF TRADING LLC <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">Prepared by</div>
+                    <div class="col-sm-4">Verified by</div>
+                    <div class="col-sm-4">Authorised Signatory</div>
+                </div>
+        </div>
+       </div>
+       </div>
+       <br>
+       <br>
+      

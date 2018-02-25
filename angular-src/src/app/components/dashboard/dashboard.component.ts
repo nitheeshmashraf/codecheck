@@ -45,7 +45,7 @@ export class DashboardComponent implements OnInit {
     this.dt= new Date();
     this.trnNo=100397147800003;
     this.emailID="info@sashfoodstuff.ae";
-   this.ClientCompany.Name="test";
+  //  this.ClientCompany.Name="test";
    this.MainInvVar.InvNoNext=123467676767;
    this.currentInv=this.MainInvVar.InvNoNext;
     this.MainInvVar.Locked=true;
@@ -54,6 +54,7 @@ export class DashboardComponent implements OnInit {
     this.InvItem.TaxableAmnt=this.InvItem.Amount;
     this.InvItem.TaxAmnt=this.InvItem.Amount*this.InvItem.Tax;
     this.TotalInvAmnt=this.InvItem.Amount+this.InvItem.TaxAmnt;
+    
   }
 
 
