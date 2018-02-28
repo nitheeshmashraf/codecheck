@@ -1,0 +1,154 @@
+<div style="border:1px solid black; padding: 10px;">
+    
+            <div class="row">
+                <div class="col-sm-6"><span style="float: left;text-align:left;"><b>SASH INTERGRATED FOODSTUFF TRADING LLC</b> <br/>
+                    Arenco Bldg 4, Office G-05, Dubai Investment Park 1<br/>
+                    Emirate, Dubai<br/>
+                    TRN : {{trnNo}}<br/>
+                    E-Mail : info@sashfoodstuff.ae<br/></span></div>
+                <div class="col-sm-6"><span style="float: right;text-align:right;">Dubai<br> TRN : {{trnNo}}<br/>
+                    E-Mail : info@sashfoodstuff.ae<br/></span></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12" align="center"><b>Tax Invoice</b></div>
+            </div>
+            
+        </div>
+        <div style="border:1px solid black; padding: 10px;">
+            <div class="row">
+                <div class="col-sm-4"><span style="float: left;text-align:left;">
+                        <select [(ngModel)]="selected" (change)="selectCompany(o);">
+                            <option *ngFor="let o of CompanyList" [value]="o">{{o.Name}}</option>
+                        </select><br> {{selected.Name}} <br> 
+                    <b>{{ClientCompany.Name}}</b><br>{{ClientCompany.Add1}} <br>{{ClientCompany.Add2}} <br>{{ClientCompany.Add3}} <br> </span>
+                </div>
+                <div class="col-sm-8">
+                    <div class="row" >
+                        <div class="col-sm-6">
+                            <span style="float: left;text-align:left;"><b>In#</b><br>{{currentInv}}</span>
+                            <span style="float: right;text-align:right;"><b>In#(AR)</b><br>{{currentInv}}</span>
+                        </div>
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>Date</b><br>{{ dt | date }}</span>
+                                <span style="float: right;text-align:right;"><b>Date(AR)</b><br>{{ dt | date }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>BuyersO#</b><br>{{ClientCompany.BuyerOrderNo}}</span>
+                                <span style="float: right;text-align:right;"><b>BuyersO#(AR)</b><br>{{ClientCompany.BuyerOrderNo}}</span>
+                        </div>
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>Dated#</b><br>{{ dt | date }}</span>
+                                <span style="float: right;text-align:right;"><b>Dated#(AR)</b><br>{{ dt | date }}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>DespatchThru#</b><br>{{ClientCompany.DespThru}}</span>
+                                <span style="float: right;text-align:right;"><b>DespatchThru#(AR)</b><br>{{ClientCompany.DespThru}}</span>
+                        </div>
+                        <div class="col-sm-6">
+                                <span style="float: left;text-align:left;"><b>Place of Supp#</b><br>{{ClientCompany.PlaceOfSupply}}</span>
+                                <span style="float: right;text-align:right;"><b>Place of Supp#(AR)</b><br>{{ClientCompany.PlaceOfSupply}}</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                                <span style="float: left;text-align:left;"><b>Mode of Pay#</b><br>{{ClientCompany.ModeOfPay}}</span>
+                                <span style="float: right;text-align:right;"><b>Mode of Pay#(AR)</b><br>{{ClientCompany.ModeOfPay}}</span>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div> 
+        <div align="center"  style="border:1px solid black;">
+                    
+                <div align="center"  style="border:1px solid black; padding: 10px;">
+                    <div class="row">
+                        <div class="col-sm-1">SL#</div>
+                        <div class="col-sm-2">Description</div>
+                        <div class="col-sm-1">Billed</div>
+                        <div class="col-sm-1">Rate</div>
+                        <div class="col-sm-1">Per</div>
+                        <div class="col-sm-1">Amount</div>
+                        <div class="col-sm-1">Vat%</div>
+                        <div class="col-sm-2">Amnt Taxable</div>
+                        <div class="col-sm-2">Tax AMnt</div>
+                    </div>
+                </div>   
+                <div align="center" class="row" style="padding: 10px;">
+                        <div class="col-sm-1">SL#</div>
+                        <div class="col-sm-2" align="left">{{InvItem[0].Name}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem[0].Billed}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem[0].Rate}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem[0].Qty}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem[0].Amount}}</div>
+                        <div class="col-sm-1" style="text-align:right;">{{InvItem[0].Tax}}</div>
+                        <div class="col-sm-2" style="text-align:right;">{{InvItem[0].TaxableAmnt}}</div>
+                        <div class="col-sm-2" style="text-align:right;">{{InvItem[0].TaxAmnt}}</div>
+                </div>
+                <div align="right"  style="border:1px solid black; padding: 10px;">
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2">Total</div>
+                            <div class="col-sm-1">114.02 Kg</div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-1">3140.61</div>
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-2">2991.6</div>
+                            <div class="col-sm-2">149</div>
+                        </div>
+                </div>   
+        </div>
+        <div   style="padding: 10px;">
+        <div class="row">
+            <div class="col-sm-9">
+                Amount Chargable in words
+            </div>
+            <div class="col-sm-1"style="text-align:right;">Vat%</div>
+            <div class="col-sm-1"style="text-align:right;">Taxable Amt</div>
+            <div class="col-sm-1"style="text-align:right;">Tax Amt</div>
+        </div>
+       <div id="spacer" class="row">
+          
+           <div class="col-sm-12">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>   
+            <u>Declaration</u> <br> We declare that the invoice shows the actual price of the goods described and that of particular....
+        </div>
+           
+       </div>
+       </div>
+       <div   style="border:1px solid black; padding: 10px;">
+     <div class="row">
+        <div class="col-sm-6" style="border-right:1px solid black;">
+            Customer seal and signature
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div class="col-sm-6">
+            <b>For SASH INTEGRATED FOODSTUFF TRADING LLC</b><br>
+            For SASH INTEGRATED FOODSTUFF TRADING LLC <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-sm-4">Prepared by</div>
+                    <div class="col-sm-4">Verified by</div>
+                    <div class="col-sm-4">Authorised Signatory</div>
+                </div>
+        </div>
+       </div>
+       </div>
+       <br>
+       <br>
+      
