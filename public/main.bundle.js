@@ -164,7 +164,7 @@ exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-b
 
 
 // module
-exports.push([module.i, "", ""]);
+exports.push([module.i, "@media print{\r\n\r\n    .hideinprint{\r\n        display: none !important;  \r\n    }\r\n    #print-footer {\r\n        display: block;\r\n        position: fixed;\r\n        bottom: 0;\r\n        left:0;\r\n    }\r\n}", ""]);
 
 // exports
 
@@ -177,7 +177,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/components/dashboard/dashboard.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<b>Test</b>\n<div [hidden]=\"!showinvoice\">\n    <div class=\"row\">\n        <div class=\"col-sm-6\">\n                <select [(ngModel)]=\"selected\" (change)=\"selectCompany();\" class=\"form-control\">\n                        <option *ngFor=\"let o of CompanyList\" [value]=\"o.Name\">{{o.Name}}</option>\n                </select>\n        </div>\n        <div class=\"col-sm-6\">\n            \n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-sm-6\">\n            {{ClientCompany.Name}} <br>   \n            {{ClientCompany.Add1}} <br>   \n            {{ClientCompany.Add2}} <br>   \n            {{ClientCompany.Add3}} <br>   \n            {{ClientCompany.BuyerOrderNo}} <br>   \n            {{ClientCompany.DespThru}} <br>   \n            {{ClientCompany.ModeOfPay}} <br>   \n            {{ClientCompany.PlaceOfSupply}} <br>   \n        </div>\n    </div>\n    <input type=\"number\" [(ngModel)]=\"count\"> <input type=\"button\"  (click)=\"counterfilling()\" value=\"submit\" class=\"form-control\">\n    <input type=\"button\" value=\"Add\" (click)=\"AddCounter()\" class=\"form-control\">\n    <div class=\"row\"  align=\"center\" style=\"padding: 10px;\">\n        <div class=\"col-sm-1\">SL#</div>\n        <div class=\"col-sm-2\" align=\"left\">Description</div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\">Billed</div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\">Rate</div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\">Per</div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\">Amount</div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\">Vat%</div>\n        <div class=\"col-sm-2\" style=\"text-align:right;\">Amnt Taxable</div>\n        <div class=\"col-sm-2\" style=\"text-align:right;\">Tax AMnt</div>\n    </div>\n\n    <div class=\"row\" *ngFor=\"let o of item_array_counter\"  align=\"center\" style=\"padding: 10px;\">\n        <div class=\"col-sm-1\">{{o+1}}</div>\n        <div class=\"col-sm-2\" align=\"left\">\n            <!-- <input class=\"form-control\"  type=\"text\" [(ngModel)]=\"InvItem[o].Name\"> -->\n            <select [(ngModel)]=\"InvItem[o].Name\" (change)=\"selectItem(InvItem[o].Name,o);\" class=\"form-control\">\n                <option *ngFor=\"let item of ItemList\" [value]=\"item.Name\">{{item.Name}}</option>\n        </select>\n        </div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\"><input class=\"form-control\"  type=\"number\" [(ngModel)]=\"InvItem[o].Billed\" (change)=\"additem(o)\"></div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\"><input class=\"form-control\"  type=\"number\" [(ngModel)]=\"InvItem[o].Rate\" (change)=\"additem(o)\"></div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Qty}}</div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Amount}}</div>\n        <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Tax}}</div>\n        <div class=\"col-sm-2\" style=\"text-align:right;\">{{InvItem[o].TaxableAmnt}}</div>\n        <div class=\"col-sm-2\" style=\"text-align:right;\">{{InvItem[o].TaxAmnt}}</div>\n    </div>\n\n    Total Amount:   {{invoicesum.Total_Amt}}\n    <input type=\"button\" class=\"form-control\" (click)=\"totalcheck()\" value=\"Compute\">\n    <input type=\"button\" class=\"form-control\" (click)=\"showinvoice=!showinvoice\" value=\"Save\">\n</div>\n\n\n<div [hidden]=\"showinvoice\">\n    <input type=\"button\" (click)=\"showinvoice=!showinvoice\" value=\"Edit\" class=\"form-control\">\n    \n    <div style=\"border:1px solid black; padding: 10px;\">\n        \n                <div class=\"row\">\n                    <div class=\"col-sm-6\"><span style=\"float: left;text-align:left;\"><b>SASH INTERGRATED FOODSTUFF TRADING LLC</b> <br/>\n                        Arenco Bldg 4, Office G-05, Dubai Investment Park 1<br/>\n                        Emirate, Dubai<br/>\n                        TRN : {{trnNo}}<br/>\n                        E-Mail : info@sashfoodstuff.ae<br/></span></div>\n                    <div class=\"col-sm-6\"><span style=\"float: right;text-align:right;\">Dubai<br> TRN : {{trnNo}}<br/>\n                        E-Mail : info@sashfoodstuff.ae<br/></span></div>\n                </div>\n                <div class=\"row\">\n                    <div class=\"col-sm-12\" align=\"center\"><b>Tax Invoice</b></div>\n                </div>\n                \n            </div>\n            <div style=\"border:1px solid black; padding: 10px;\">\n                <div class=\"row\">\n                    <div class=\"col-sm-4\"><span style=\"float: left;text-align:left;\">\n                            <select [(ngModel)]=\"selected\" (change)=\"selectCompany(o);\">\n                                <option *ngFor=\"let o of CompanyList\" [value]=\"o\">{{o.Name}}</option>\n                            </select><br> {{selected.Name}} <br> \n                        <b>{{ClientCompany.Name}}</b><br>{{ClientCompany.Add1}} <br>{{ClientCompany.Add2}} <br>{{ClientCompany.Add3}} <br> </span>\n                    </div>\n                    <div class=\"col-sm-8\">\n                        <div class=\"row\" >\n                            <div class=\"col-sm-6\">\n                                <span style=\"float: left;text-align:left;\"><b>In#</b><br>{{currentInv}}</span>\n                                <span style=\"float: right;text-align:right;\"><b>In#(AR)</b><br>{{currentInv}}</span>\n                            </div>\n                            <div class=\"col-sm-6\">\n                                    <span style=\"float: left;text-align:left;\"><b>Date</b><br>{{ dt | date }}</span>\n                                    <span style=\"float: right;text-align:right;\"><b>Date(AR)</b><br>{{ dt | date }}</span>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-sm-6\">\n                                    <span style=\"float: left;text-align:left;\"><b>BuyersO#</b><br>{{ClientCompany.BuyerOrderNo}}</span>\n                                    <span style=\"float: right;text-align:right;\"><b>BuyersO#(AR)</b><br>{{ClientCompany.BuyerOrderNo}}</span>\n                            </div>\n                            <div class=\"col-sm-6\">\n                                    <span style=\"float: left;text-align:left;\"><b>Dated#</b><br>{{ dt | date }}</span>\n                                    <span style=\"float: right;text-align:right;\"><b>Dated#(AR)</b><br>{{ dt | date }}</span>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-sm-6\">\n                                    <span style=\"float: left;text-align:left;\"><b>DespatchThru#</b><br>{{ClientCompany.DespThru}}</span>\n                                    <span style=\"float: right;text-align:right;\"><b>DespatchThru#(AR)</b><br>{{ClientCompany.DespThru}}</span>\n                            </div>\n                            <div class=\"col-sm-6\">\n                                    <span style=\"float: left;text-align:left;\"><b>Place of Supp#</b><br>{{ClientCompany.PlaceOfSupply}}</span>\n                                    <span style=\"float: right;text-align:right;\"><b>Place of Supp#(AR)</b><br>{{ClientCompany.PlaceOfSupply}}</span>\n                            </div>\n                        </div>\n                        <div class=\"row\">\n                            <div class=\"col-sm-12\">\n                                    <span style=\"float: left;text-align:left;\"><b>Mode of Pay#</b><br>{{ClientCompany.ModeOfPay}}</span>\n                                    <span style=\"float: right;text-align:right;\"><b>Mode of Pay#(AR)</b><br>{{ClientCompany.ModeOfPay}}</span>\n                            </div>\n                        </div>\n                        \n                    </div>\n                </div>\n            </div> \n            <div align=\"center\"  style=\"border:1px solid black;\">\n                        \n                    <div align=\"center\"  style=\"border:1px solid black; padding: 10px;\">\n                        <div class=\"row\">\n                            <div class=\"col-sm-1\">SL#</div>\n                            <div class=\"col-sm-2\">Description</div>\n                            <div class=\"col-sm-1\">Billed</div>\n                            <div class=\"col-sm-1\">Rate</div>\n                            <div class=\"col-sm-1\">Per</div>\n                            <div class=\"col-sm-1\">Amount</div>\n                            <div class=\"col-sm-1\">Vat%</div>\n                            <div class=\"col-sm-2\">Amnt Taxable</div>\n                            <div class=\"col-sm-2\">Tax AMnt</div>\n                        </div>\n                    </div>   \n                    <div align=\"center\" class=\"row\" style=\"padding: 10px;\" *ngFor=\"let o of item_array_counter\">\n                            <div class=\"col-sm-1\">{{o+1}}</div>\n                            <div class=\"col-sm-2\" align=\"left\">{{InvItem[o].Name}}</div>\n                            <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Billed}}</div>\n                            <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Rate}}</div>\n                            <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Qty}}</div>\n                            <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Amount}}</div>\n                            <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Tax}}</div>\n                            <div class=\"col-sm-2\" style=\"text-align:right;\">{{InvItem[o].TaxableAmnt}}</div>\n                            <div class=\"col-sm-2\" style=\"text-align:right;\">{{InvItem[o].TaxAmnt}}</div>\n                    </div>\n                    <div align=\"right\"  style=\"border:1px solid black; padding: 10px;\">\n                            <div class=\"row\">\n                                <div class=\"col-sm-1\"></div>\n                                <div class=\"col-sm-2\">Total</div>\n                                <div class=\"col-sm-1\">{{invoicesum.Total_Billed_Qty}} Kg</div>\n                                <div class=\"col-sm-1\"></div>\n                                <div class=\"col-sm-1\"></div>\n                                <div class=\"col-sm-1\">{{invoicesum.Total_Amt}}</div>\n                                <div class=\"col-sm-1\"></div>\n                                <div class=\"col-sm-2\">{{invoicesum.Total_Taxable_Amt}}</div>\n                                <div class=\"col-sm-2\">{{invoicesum.Total_Tax_Amt}}</div>\n                            </div>\n                    </div>   \n            </div>\n            <div   style=\"padding: 10px;\">\n            <div class=\"row\">\n                <div class=\"col-sm-9\">\n                    Amount Chargable in words\n                </div>\n                <div class=\"col-sm-1\"style=\"text-align:right;\">Vat%</div>\n                <div class=\"col-sm-1\"style=\"text-align:right;\">Taxable Amt</div>\n                <div class=\"col-sm-1\"style=\"text-align:right;\">Tax Amt</div>\n            </div>\n           <div id=\"spacer\" class=\"row\">\n              \n               <div class=\"col-sm-12\">\n                    <br>\n                    <br>\n                    <br>\n                    <br>\n                    <br>   \n                <u>Declaration</u> <br> We declare that the invoice shows the actual price of the goods described and that of particular....\n            </div>\n               \n           </div>\n           </div>\n           <div   style=\"border:1px solid black; padding: 10px;\">\n         <div class=\"row\">\n            <div class=\"col-sm-6\" style=\"border-right:1px solid black;\">\n                Customer seal and signature\n                <br>\n                <br>\n                <br>\n                <br>\n            </div>\n            <div class=\"col-sm-6\">\n                <b>For SASH INTEGRATED FOODSTUFF TRADING LLC</b><br>\n                For SASH INTEGRATED FOODSTUFF TRADING LLC <br>\n                    <br>\n                    <br>\n                    <br>\n                    <br>\n                    <div class=\"row\">\n                        <div class=\"col-sm-4\">Prepared by</div>\n                        <div class=\"col-sm-4\">Verified by</div>\n                        <div class=\"col-sm-4\">Authorised Signatory</div>\n                    </div>\n            </div>\n           </div>\n           </div>\n           <br>\n           <br>\n          \n</div>"
+module.exports = "<b>Test</b>\n<div [hidden]=\"!showinvoice\">\n   <div class=\"row\">\n      <div class=\"col-sm-6\">\n         <select [(ngModel)]=\"selected\" (change)=\"selectCompany();\" class=\"form-control\">\n         <option *ngFor=\"let o of CompanyList\" [value]=\"o.Name\">{{o.Name}}</option>\n         </select>\n      </div>\n      <div class=\"col-sm-6\">\n         {{ClientCompany.Name}} <br>   \n         {{ClientCompany.Add1}} <br>   \n         {{ClientCompany.Add2}} <br>   \n         {{ClientCompany.Add3}} <br>   \n      </div>\n   </div>\n   <div class=\"row\">\n      <div class=\"col-sm-3\">\n         <!-- <input type=\"number\" [(ngModel)]=\"count\" class=\"form-control\">  -->\n      </div>\n      <div class=\"col-sm-3\">\n         <!-- <input type=\"button\"  (click)=\"counterfilling()\" value=\"submit\" class=\"form-control\"> -->\n      </div>\n      <div class=\"col-sm-3\"></div>\n      <div class=\"col-sm-3\">\n         <!-- <input type=\"button\" value=\"Add\" (click)=\"AddCounter()\" class=\"form-control\" [hidden]=\"!AddButtonShow\"> -->\n      </div>\n   </div>\n   <div class=\"row\"  align=\"center\" style=\"padding: 10px;\">\n      <div class=\"col-sm-1\">SL#</div>\n      <div class=\"col-sm-2\" align=\"left\">Description</div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\">Billed</div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\">Rate</div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\">Per</div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\">Amount</div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\">Vat%</div>\n      <div class=\"col-sm-2\" style=\"text-align:right;\">Amnt Taxable</div>\n      <div class=\"col-sm-2\" style=\"text-align:right;\">Tax AMnt</div>\n   </div>\n   <div class=\"row\" *ngFor=\"let o of item_array_counter\"  align=\"center\" style=\"padding: 10px;\">\n      <div class=\"col-sm-1\">{{o+1}}</div>\n      <div class=\"col-sm-2\" align=\"left\">\n         <!-- <input class=\"form-control\"  type=\"text\" [(ngModel)]=\"InvItem[o].Name\"> -->\n         <select [(ngModel)]=\"InvItem[o].Name\" (change)=\"selectItem(InvItem[o].Name,o);\" class=\"form-control\">\n         <option *ngFor=\"let item of ItemList\" [value]=\"item.Name\">{{item.Name}}</option>\n         </select>\n      </div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\"><input class=\"form-control\"  type=\"number\" [(ngModel)]=\"InvItem[o].Billed\" (change)=\"additem(o)\"></div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\"><input class=\"form-control\"  type=\"number\" [(ngModel)]=\"InvItem[o].Rate\" (change)=\"additem(o)\"></div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Qty}}</div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Amount.toFixed(2)}}</div>\n      <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Tax.toFixed(2)}}</div>\n      <div class=\"col-sm-2\" style=\"text-align:right;\">{{InvItem[o].TaxableAmnt.toFixed(2)}}</div>\n      <div class=\"col-sm-2\" style=\"text-align:right;\">{{InvItem[o].TaxAmnt.toFixed(2)}}</div> \n      \n   </div>\n   <div class=\"row\">\n       <div class=\"col-sm 3\"></div>\n       <div class=\"col-sm 3\"></div>\n       <div class=\"col-sm 3\"></div>\n       <div class=\"col-sm 3\">\n           \n           <input type=\"button\" value=\"Add\" (click)=\"AddCounter()\" class=\"form-control\" [hidden]=\"!AddButtonShow\">\n       </div>\n   </div>\n   <br>\n   <br>\n   <br>\n   <br>\n   <div class=\"row\">\n      <div class=\"col-sm-3\">Total Amount:   {{invoicesum.Total_Amt.toFixed(2)}}</div>\n      <div class=\"col-sm-3\"><input type=\"button\" class=\"form-control\" (click)=\"totalcheck()\" value=\"Compute\"></div>\n      <div class=\"col-sm-3\"></div>\n      <div class=\"col-sm-3\">\n          <div  [hidden]=\"invoicesum.Total_Amt==0.00\">\n            <input type=\"button\" [hidden]=\"ClientCompany.Name==''\" class=\"form-control\" (click)=\"SavetoDB()\" value=\"Save\">\n          </div>\n    </div>\n   </div>\n</div>\n\n<div [hidden]=\"showinvoice\">\n   <div class=\"row\">\n      <div class=\"col-sm-3\">\n         <input type=\"button\" (click)=\"showinvoice=!showinvoice\" value=\"Edit\" class=\"form-control hideinprint\">\n      </div>\n      <div class=\"col-sm-3\"></div>\n      <div class=\"col-sm-3\"></div>\n      <div class=\"col-sm-3\">\n         <input type=\"button\" (click)=\"print()\" value=\"Print\" class=\"form-control hideinprint\">\n      </div>\n   </div>\n   <br>\n   <div style=\"border:1px solid black; padding: 10px;\">\n      <div class=\"row\">\n         <div class=\"col-sm-6\"><span style=\"float: left;text-align:left;\"><b>SASH INTERGRATED FOODSTUFF TRADING LLC</b> <br/>\n            Arenco Bldg 4, Office G-05, Dubai Investment Park 1<br/>\n            Emirate, Dubai<br/>\n            TRN : {{trnNo}}<br/>\n            E-Mail : info@sashfoodstuff.ae<br/></span>\n         </div>\n         <div class=\"col-sm-6\"><span style=\"float: right;text-align:right;\">Dubai<br> TRN : {{trnNo}}<br/>\n            E-Mail : info@sashfoodstuff.ae<br/></span>\n         </div>\n      </div>\n      <div class=\"row\">\n         <div class=\"col-sm-12\" align=\"center\"><b>Tax Invoice</b></div>\n      </div>\n   </div>\n   <div style=\"border:1px solid black; padding: 10px;\">\n      <div class=\"row\">\n         <div class=\"col-sm-4\">\n            <span style=\"float: left;text-align:left;\">\n               <!-- <select [(ngModel)]=\"selected\" (change)=\"selectCompany(o);\">\n                  <option *ngFor=\"let o of CompanyList\" [value]=\"o\">{{o.Name}}</option>\n                  </select><br> {{selected.Name}} <br>  -->\n               <b>{{ClientCompany.Name}}</b><br>{{ClientCompany.Add1}} <br>{{ClientCompany.Add2}} <br>{{ClientCompany.Add3}} <br> \n            </span>\n         </div>\n         <div class=\"col-sm-8\">\n            <div class=\"row\" >\n               <div class=\"col-sm-6\">\n                  <span style=\"float: left;text-align:left;\"><b>In#</b><br>{{currentInv}}</span>\n                  <!-- <span style=\"float: right;text-align:right;\"><b>In#(AR)</b><br>{{currentInv}}</span> -->\n               </div>\n               <div class=\"col-sm-6\">\n                  <span style=\"float: left;text-align:left;\"><b>Date</b><br>{{ dt | date }}</span>\n                  <!-- <span style=\"float: right;text-align:right;\"><b>Date(AR)</b><br>{{ dt | date }}</span> -->\n               </div>\n            </div>\n            <div class=\"row\">\n               <div class=\"col-sm-6\">\n                  <span style=\"float: left;text-align:left;\"><b>BuyersO#</b><br>{{ClientCompany.BuyerOrderNo}}</span>\n                  <!-- <span style=\"float: right;text-align:right;\"><b>BuyersO#(AR)</b><br>{{ClientCompany.BuyerOrderNo}}</span> -->\n               </div>\n               <div class=\"col-sm-6\">\n                  <span style=\"float: left;text-align:left;\"><b>Dated#</b><br>{{ dt | date }}</span>\n                  <!-- <span style=\"float: right;text-align:right;\"><b>Dated#(AR)</b><br>{{ dt | date }}</span> -->\n               </div>\n            </div>\n            <div class=\"row\">\n               <div class=\"col-sm-6\">\n                  <span style=\"float: left;text-align:left;\"><b>DespatchThru#</b><br>{{ClientCompany.DespThru}}</span>\n                  <!-- <span style=\"float: right;text-align:right;\"><b>DespatchThru#(AR)</b><br>{{ClientCompany.DespThru}}</span> -->\n               </div>\n               <div class=\"col-sm-6\">\n                  <span style=\"float: left;text-align:left;\"><b>Place of Supp#</b><br>{{ClientCompany.PlaceOfSupply}}</span>\n                  <!-- <span style=\"float: right;text-align:right;\"><b>Place of Supp#(AR)</b><br>{{ClientCompany.PlaceOfSupply}}</span> -->\n               </div>\n            </div>\n            <div class=\"row\">\n               <div class=\"col-sm-12\">\n                  <span style=\"float: left;text-align:left;\"><b>Mode of Pay#</b><br>{{ClientCompany.ModeOfPay}}</span>\n                  <!-- <span style=\"float: right;text-align:right;\"><b>Mode of Pay#(AR)</b><br>{{ClientCompany.ModeOfPay}}</span> -->\n               </div>\n            </div>\n         </div>\n      </div>\n   </div>\n   <div align=\"center\"  style=\"border:1px solid black;\">\n      <div align=\"center\"  style=\"border:1px solid black; padding: 10px;\">\n         <div class=\"row\">\n            <div class=\"col-sm-1\">SL#</div>\n            <div class=\"col-sm-2\">Description</div>\n            <div class=\"col-sm-1\">Billed</div>\n            <div class=\"col-sm-1\">Rate</div>\n            <div class=\"col-sm-1\">Per</div>\n            <div class=\"col-sm-1\">Amount</div>\n            <div class=\"col-sm-1\">Vat%</div>\n            <div class=\"col-sm-2\">Amnt Taxable</div>\n            <div class=\"col-sm-2\">Tax AMnt</div>\n         </div>\n      </div>\n      <div align=\"center\" class=\"row\" style=\"padding: 10px;\" *ngFor=\"let o of item_array_counter\">\n         <div class=\"col-sm-1\">{{o+1}}</div>\n         <div class=\"col-sm-2\" align=\"left\">{{InvItem[o].Name}}</div>\n         <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Billed}}</div>\n         <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Rate}}</div>\n         <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Qty}}</div>\n         <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Amount.toFixed(2)}}</div>\n         <div class=\"col-sm-1\" style=\"text-align:right;\">{{InvItem[o].Tax.toFixed(2)}}</div>\n         <div class=\"col-sm-2\" style=\"text-align:right;\">{{InvItem[o].TaxableAmnt.toFixed(2)}}</div>\n         <div class=\"col-sm-2\" style=\"text-align:right;\">{{InvItem[o].TaxAmnt.toFixed(2)}}</div>\n      </div>\n      <br>\n      <br>\n      <br>\n      <br>\n      <div align=\"right\"  style=\"border:1px solid black; padding: 10px;\">\n         <div class=\"row\">\n            <div class=\"col-sm-1\"></div>\n            <div class=\"col-sm-2\">Total</div>\n            <div class=\"col-sm-1\">{{invoicesum.Total_Billed_Qty}} Kg</div>\n            <div class=\"col-sm-1\"></div>\n            <div class=\"col-sm-1\"></div>\n            <div class=\"col-sm-1\">{{invoicesum.Total_Amt.toFixed(2)}}</div>\n            <div class=\"col-sm-1\"></div>\n            <div class=\"col-sm-2\">{{invoicesum.Total_Taxable_Amt.toFixed(2)}}</div>\n            <div class=\"col-sm-2\">{{invoicesum.Total_Tax_Amt.toFixed(2)}}</div>\n         </div>\n      </div>\n   </div>\n   <div   style=\"padding: 10px;\">\n      <div class=\"row\">\n         <div class=\"col-sm-9\">\n            Amount Chargable in words\n         </div>\n         <div class=\"col-sm-1\"style=\"text-align:right;\">Vat%</div>\n         <div class=\"col-sm-1\"style=\"text-align:right;\">Taxable Amt</div>\n         <div class=\"col-sm-1\"style=\"text-align:right;\">Tax Amt</div>\n      </div>\n      <div class=\"row\">\n         <div class=\"col-sm-9\">\n         </div>\n         <div class=\"col-sm-1\"style=\"text-align:right;\">{{total_tax_amt.toFixed(2)}}%</div>\n         <div class=\"col-sm-1\"style=\"text-align:right;\">{{invoicesum.Total_Taxable_Amt.toFixed(2)}}</div>\n         <div class=\"col-sm-1\"style=\"text-align:right;\">{{invoicesum.Total_Tax_Amt.toFixed(2)}}</div>\n      </div>\n      <div id=\"print-footer\">\n         <div id=\"spacer\" class=\"row\">\n            <div class=\"col-sm-12\">\n               <br>\n               <br>\n               <br>\n               <br>\n               <br>   \n               <u>Declaration</u> <br> We declare that the invoice shows the actual price of the goods described and that of particular....\n            </div>\n         </div>\n      </div>\n      <div   style=\"border:1px solid black; padding: 10px;\">\n         <div class=\"row\">\n            <div class=\"col-sm-6\" style=\"border-right:1px solid black;\">\n               Customer seal and signature\n               <br>\n               <br>\n               <br>\n               <br>\n            </div>\n            <div class=\"col-sm-6\">\n               <b>For SASH INTEGRATED FOODSTUFF TRADING LLC</b><br>\n               For SASH INTEGRATED FOODSTUFF TRADING LLC <br>\n               <br>\n               <br>\n               <br>\n               <br>\n               <div class=\"row\">\n                  <div class=\"col-sm-4\">Prepared by</div>\n                  <div class=\"col-sm-4\">Verified by</div>\n                  <div class=\"col-sm-4\">Authorised Signatory</div>\n               </div>\n            </div>\n         </div>\n      </div>\n      <br>\n      <br>\n   </div>\n</div>"
 
 /***/ }),
 
@@ -199,229 +199,254 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var DashboardComponent = (function () {
     function DashboardComponent() {
+        this.AddButtonShow = true;
         this.i = -1;
         this.k = 0;
         this.showinvoice = true;
-        this.InvItem = [{
-                Name: "itemName_1",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
-                Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
-                Name: "itemName_2",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
-                Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
-                Name: "itemName_3",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
-                Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
-                Name: "itemName_4",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
-                Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
-                Name: "itemName_5",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
-                Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
-                Name: "itemName_6",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
-                Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
-                Name: "itemName_7",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
-                Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
-                Name: "itemName_8",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
-                Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
+        this.count = 1;
+        this.item_array_counter = [0];
+        this.total_tax_amt = 0;
+        this.InvItem = [
+            {
+                Name: "",
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
+                Tax: 0.00,
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
+                Name: "",
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
+                Tax: 0.00,
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
+                Name: "",
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
+                Tax: 0.00,
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
+                Name: "",
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
+                Tax: 0.00,
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
+                Name: "",
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
+                Tax: 0.00,
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
+                Name: "",
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
+                Tax: 0.00,
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
+                Name: "",
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
+                Tax: 0.00,
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
+                Name: "",
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
+                Tax: 0.00,
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
             }
         ];
-        this.ItemList = [{
+        this.ItemList = [
+            {
                 Name: "Mutton",
-                Billed: 1,
-                Rate: 124,
-                Qty: 'Kg',
+                Billed: 1.00,
+                Rate: 24.00,
+                Qty: "Kg",
                 Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
                 Name: "Beef",
-                Billed: 126,
-                Rate: 1,
-                Qty: 'Kg',
+                Billed: 1.00,
+                Rate: 26.00,
+                Qty: "Kg",
                 Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
                 Name: "Mutton SP",
-                Billed: 23,
-                Rate: 1,
-                Qty: 'Kg',
+                Billed: 1.00,
+                Rate: 23.00,
+                Qty: "Kg",
                 Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
                 Name: "Beef SP",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
                 Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
                 Name: "Sausage",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
                 Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
                 Name: "itemName_6",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
                 Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
                 Name: "itemName_7",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
                 Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }, {
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            },
+            {
                 Name: "itemName_8",
-                Billed: 0,
-                Rate: 0,
-                Qty: 'Kg',
+                Billed: 0.00,
+                Rate: 0.00,
+                Qty: "Kg",
                 Tax: 5.00,
-                TaxableAmnt: 0,
-                TaxAmnt: 0,
-                Amount: 0
-            }];
+                TaxableAmnt: 0.00,
+                TaxAmnt: 0.00,
+                Amount: 0.00
+            }
+        ];
         this.invoicesum = {
             Invoice_No: 0,
-            Currency: 'AED',
+            Currency: "AED",
             Total_Billed_Qty: 0,
             Total_Amt: 0,
             Total_Taxable_Amt: 0,
             Total_Tax_Amt: 0,
-            Total_Amt_inWords: 'string',
-            Total_VAT_Amt_inWords: 'string'
+            Total_Amt_inWords: "string",
+            Total_VAT_Amt_inWords: "string"
         };
-        this.count = 1;
-        this.item_array_counter = [0];
-        this.CompanyList = [{
+        this.CompanyList = [
+            {
                 Name: "ClientName1",
-                Add1: 'fzllc',
-                Add2: 'address2',
-                Add3: 'address 3',
+                Add1: "fzllc",
+                Add2: "address2",
+                Add3: "address 3",
                 BuyerOrderNo: 135790,
-                DespThru: 'nith',
-                ModeOfPay: 'CASH',
-                ModeOfPayAr: 'CASH AR',
-                PlaceOfSupply: 'Emirate'
-            }, {
+                DespThru: "nith",
+                ModeOfPay: "CASH",
+                ModeOfPayAr: "CASH AR",
+                PlaceOfSupply: "Emirate"
+            },
+            {
                 Name: "ClientName2",
-                Add1: 'fzllc',
-                Add2: 'address2',
-                Add3: 'address 3',
+                Add1: "fzllc",
+                Add2: "address2",
+                Add3: "address 3",
                 BuyerOrderNo: 135790,
-                DespThru: 'nith',
-                ModeOfPay: 'CASH',
-                ModeOfPayAr: 'CASH AR',
-                PlaceOfSupply: 'Emirate'
-            }, {
+                DespThru: "nith",
+                ModeOfPay: "CASH",
+                ModeOfPayAr: "CASH AR",
+                PlaceOfSupply: "Emirate"
+            },
+            {
                 Name: "ClientName3",
-                Add1: 'fzllc',
-                Add2: 'address2',
-                Add3: 'address 3',
+                Add1: "fzllc",
+                Add2: "address2",
+                Add3: "address 3",
                 BuyerOrderNo: 135790,
-                DespThru: 'nith',
-                ModeOfPay: 'CASH',
-                ModeOfPayAr: 'CASH AR',
-                PlaceOfSupply: 'Emirate'
-            }, {
+                DespThru: "nith",
+                ModeOfPay: "CASH",
+                ModeOfPayAr: "CASH AR",
+                PlaceOfSupply: "Emirate"
+            },
+            {
                 Name: "ClientName4",
-                Add1: 'fzllc',
-                Add2: 'address2',
-                Add3: 'address 3',
+                Add1: "fzllc",
+                Add2: "address2",
+                Add3: "address 3",
                 BuyerOrderNo: 135790,
-                DespThru: 'nith',
-                ModeOfPay: 'CASH',
-                ModeOfPayAr: 'CASH AR',
-                PlaceOfSupply: 'Emirate'
-            }, {
+                DespThru: "nith",
+                ModeOfPay: "CASH",
+                ModeOfPayAr: "CASH AR",
+                PlaceOfSupply: "Emirate"
+            },
+            {
                 Name: "ClientName5",
-                Add1: 'fzllc',
-                Add2: 'address2',
-                Add3: 'address 3',
+                Add1: "fzllc",
+                Add2: "address2",
+                Add3: "address 3",
                 BuyerOrderNo: 135790,
-                DespThru: 'nith',
-                ModeOfPay: 'CASH',
-                ModeOfPayAr: 'CASH AR',
-                PlaceOfSupply: 'Emirate'
-            }];
+                DespThru: "nith",
+                ModeOfPay: "CASH",
+                ModeOfPayAr: "CASH AR",
+                PlaceOfSupply: "Emirate"
+            }
+        ];
         this.ClientCompany = {
-            Name: "ClientName",
-            Add1: 'fzllc',
-            Add2: 'address2',
-            Add3: 'address 3',
-            BuyerOrderNo: 135790,
-            DespThru: 'nith',
-            ModeOfPay: 'CASH',
-            ModeOfPayAr: 'CASH AR',
-            PlaceOfSupply: 'Emirate'
+            Name: "",
+            Add1: "",
+            Add2: "",
+            Add3: "",
+            BuyerOrderNo: 0,
+            DespThru: "",
+            ModeOfPay: "",
+            ModeOfPayAr: "",
+            PlaceOfSupply: ""
         };
         this.MainInvVar = {
             InvNoNext: 1234,
@@ -432,11 +457,12 @@ var DashboardComponent = (function () {
         this.dt = new Date();
         this.trnNo = 100397147800003;
         this.emailID = "info@sashfoodstuff.ae";
-        this.MainInvVar.InvNoNext = 123467676767;
+        //  this.MainInvVar.InvNoNext=123467676767;
         this.currentInv = this.MainInvVar.InvNoNext;
         this.MainInvVar.Locked = true;
     };
     DashboardComponent.prototype.selectCompany = function () {
+        console.log("selectCompany");
         do {
             this.i = this.i + 1;
             this.ClientCompany = this.CompanyList[this.i];
@@ -445,34 +471,39 @@ var DashboardComponent = (function () {
         console.log(this.selected);
     };
     DashboardComponent.prototype.additem = function (k) {
-        // this.InvItem[k].Name='revoke';
-        console.log('here');
+        console.log("additem");
         this.InvItem[k].TaxableAmnt = this.InvItem[k].Billed * this.InvItem[k].Rate;
-        this.InvItem[k].TaxAmnt = this.InvItem[k].TaxableAmnt * (this.InvItem[k].Tax / 100);
-        this.InvItem[k].Amount = this.InvItem[k].TaxAmnt + this.InvItem[k].TaxableAmnt;
-        console.log('taxable' + this.InvItem[k].TaxableAmnt);
-        console.log('tax' + this.InvItem[k].TaxAmnt);
-        console.log('amt' + this.InvItem[k].Amount);
+        this.InvItem[k].TaxAmnt =
+            this.InvItem[k].TaxableAmnt * (this.InvItem[k].Tax / 100);
+        this.InvItem[k].Amount =
+            this.InvItem[k].TaxAmnt + this.InvItem[k].TaxableAmnt;
+        console.log("taxable" + this.InvItem[k].TaxableAmnt);
+        console.log("tax" + this.InvItem[k].TaxAmnt);
+        console.log("amt" + this.InvItem[k].Amount);
         this.totalcheck();
     };
     DashboardComponent.prototype.totalcheck = function () {
+        console.log("totalcheck");
         this.k = 0;
-        this.TotalInvAmnt = 0;
-        this.invoicesum.Total_Billed_Qty = 0;
+        this.TotalInvAmnt = 0.00;
+        this.invoicesum.Total_Billed_Qty = 0.00;
+        this.total_tax_amt = 0.00;
         for (this.k = 0; this.k < this.InvItem.length; this.k++) {
             if (this.InvItem[this.k].Amount > 0) {
                 this.TotalInvAmnt += this.InvItem[this.k].Amount;
-                this.invoicesum.Total_Tax_Amt += this.InvItem[this.k].Tax;
+                this.invoicesum.Total_Tax_Amt += this.InvItem[this.k].TaxAmnt;
                 this.invoicesum.Total_Taxable_Amt += this.InvItem[this.k].TaxableAmnt;
                 this.invoicesum.Total_Billed_Qty += this.InvItem[this.k].Billed;
             }
         }
         this.invoicesum.Total_Amt = this.TotalInvAmnt;
+        this.total_tax_amt = this.invoicesum.Total_Tax_Amt / this.TotalInvAmnt;
     };
     DashboardComponent.prototype.selectItem = function (item, o) {
+        console.log("selectItem");
         this.k = 0;
-        console.log('listitem:' + this.ItemList.length);
-        console.log(item + ',' + o);
+        console.log("listitem:" + this.ItemList.length);
+        console.log(item + "," + o);
         for (this.k = 0; this.k < this.ItemList.length; this.k++) {
             if (this.ItemList[this.k].Name == item) {
                 // this.InvItem[o].=this.ItemList[this.k];
@@ -481,35 +512,57 @@ var DashboardComponent = (function () {
                 this.InvItem[o].Rate = this.ItemList[this.k].Rate;
                 this.InvItem[o].Qty = this.ItemList[this.k].Qty;
                 this.InvItem[o].Tax = this.ItemList[this.k].Tax;
-                this.InvItem[o].TaxableAmnt = this.InvItem[o].Billed * this.InvItem[o].Rate;
-                this.InvItem[o].TaxAmnt = this.InvItem[o].TaxableAmnt * (this.InvItem[o].Tax / 100);
-                this.InvItem[o].Amount = this.InvItem[o].TaxAmnt + this.InvItem[o].TaxableAmnt;
+                this.InvItem[o].TaxableAmnt =
+                    this.InvItem[o].Billed * this.InvItem[o].Rate;
+                this.InvItem[o].TaxAmnt =
+                    this.InvItem[o].TaxableAmnt * (this.InvItem[o].Tax / 100);
+                this.InvItem[o].Amount =
+                    this.InvItem[o].TaxAmnt + this.InvItem[o].TaxableAmnt;
                 console.log(this.ItemList[this.k].Name);
                 console.log(this.InvItem[o].Name);
-                console.log('runs at ' + this.k);
+                console.log("runs at " + this.k);
             }
         }
         // this.additem(o);
-        // this.totalcheck();
+        this.totalcheck();
     };
     DashboardComponent.prototype.counterfilling = function () {
+        console.log("counterfilling");
         this.k = 0;
         while (this.k < this.count) {
-            this.item_array_counter[this.k] = this.k;
-            this.InvItem[this.k].Name = 'item ' + this.k;
-            console.log(this.k);
-            console.log(this.item_array_counter[this.k]);
+            if (this.item_array_counter.length == 8) {
+                console.log("Maximum limit reached");
+            }
+            else {
+                this.item_array_counter[this.k] = this.k;
+                this.InvItem[this.k].Name = "item " + this.k;
+                console.log(this.k);
+                console.log(this.item_array_counter[this.k]);
+            }
             this.k += 1;
         }
     };
     DashboardComponent.prototype.AddCounter = function () {
-        this.item_array_counter[this.item_array_counter.length] = this.item_array_counter.length;
-        this.buffer = this.item_array_counter[this.item_array_counter.length];
-        this.InvItem[this.buffer].Name = 'item ' + this.buffer;
+        console.log("AddCounter");
+        console.log(this.item_array_counter);
+        console.log(this.item_array_counter.length);
+        this.k = this.item_array_counter.length;
+        this.item_array_counter[this.k] = this.item_array_counter.length;
+        this.AddButtonShow = true;
+        if (this.item_array_counter.length == 8) {
+            this.AddButtonShow = false;
+        }
+    };
+    DashboardComponent.prototype.print = function () {
+        console.log("print");
+        window.print();
+    };
+    DashboardComponent.prototype.SavetoDB = function () {
+        this.showinvoice = !this.showinvoice;
     };
     DashboardComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
-            selector: 'app-dashboard',
+            selector: "app-dashboard",
             template: __webpack_require__("../../../../../src/app/components/dashboard/dashboard.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/dashboard/dashboard.component.css")]
         }),
