@@ -1,5 +1,6 @@
 export interface ClientComp{
   // companyId: number,
+  Invoice_No:number,
   Name:String,
   Add1:String,
   Add2:String,
@@ -17,6 +18,7 @@ export interface MainInv{
 }
 
 export interface itemVal {
+  InvoiceNum: number,
   Name: String,
   Qty: String,
   Rate:number,

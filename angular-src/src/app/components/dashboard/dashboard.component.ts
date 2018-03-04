@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Http, Headers } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { HttpModule } from '@angular/http';
 import { ClientComp, MainInv, itemVal, InvSummary } from "./ClientComp";
 @Component({
   selector: "app-dashboard",
@@ -21,11 +25,12 @@ export class DashboardComponent implements OnInit {
   TotalInvAmnt: number;
   item_array_counter: Array<number> = [0];
   total_tax_amt: number = 0;
-
+  invnumNext : any;
   
 
   InvItem: itemVal[] = [
     {
+      InvoiceNum:0,  
       Name: "",
       Billed: 0.00,
       Rate: 0.00,
@@ -36,6 +41,7 @@ export class DashboardComponent implements OnInit {
       Amount: 0.00
     },
     {
+      InvoiceNum:0,  
       Name: "",
       Billed: 0.00,
       Rate: 0.00,
@@ -46,6 +52,7 @@ export class DashboardComponent implements OnInit {
       Amount: 0.00
     },
     {
+      InvoiceNum:0,  
       Name: "",
       Billed: 0.00,
       Rate: 0.00,
@@ -56,6 +63,7 @@ export class DashboardComponent implements OnInit {
       Amount: 0.00
     },
     {
+      InvoiceNum:0,  
       Name: "",
       Billed: 0.00,
       Rate: 0.00,
@@ -66,6 +74,7 @@ export class DashboardComponent implements OnInit {
       Amount: 0.00
     },
     {
+      InvoiceNum:0,  
       Name: "",
       Billed: 0.00,
       Rate: 0.00,
@@ -76,6 +85,7 @@ export class DashboardComponent implements OnInit {
       Amount: 0.00
     },
     {
+      InvoiceNum:0,  
       Name: "",
       Billed: 0.00,
       Rate: 0.00,
@@ -86,6 +96,7 @@ export class DashboardComponent implements OnInit {
       Amount: 0.00
     },
     {
+      InvoiceNum:0,  
       Name: "",
       Billed: 0.00,
       Rate: 0.00,
@@ -96,6 +107,7 @@ export class DashboardComponent implements OnInit {
       Amount: 0.00
     },
     {
+      InvoiceNum:0,  
       Name: "",
       Billed: 0.00,
       Rate: 0.00,
@@ -116,6 +128,7 @@ export class DashboardComponent implements OnInit {
       Tax: 5.00,
       TaxableAmnt: 0.00,
       TaxAmnt: 0.00,
+      InvoiceNum:0, 
       Amount: 0.00
     },
     {
@@ -126,7 +139,7 @@ export class DashboardComponent implements OnInit {
       Tax: 5.00,
       TaxableAmnt: 0.00,
       TaxAmnt: 0.00,
-      Amount: 0.00
+      InvoiceNum:0, Amount: 0.00
     },
     {
       Name: "Mutton SP",
@@ -136,7 +149,7 @@ export class DashboardComponent implements OnInit {
       Tax: 5.00,
       TaxableAmnt: 0.00,
       TaxAmnt: 0.00,
-      Amount: 0.00
+      InvoiceNum:0, Amount: 0.00
     },
     {
       Name: "Beef SP",
@@ -146,7 +159,7 @@ export class DashboardComponent implements OnInit {
       Tax: 5.00,
       TaxableAmnt: 0.00,
       TaxAmnt: 0.00,
-      Amount: 0.00
+      InvoiceNum:0, Amount: 0.00
     },
     {
       Name: "Sausage",
@@ -156,7 +169,7 @@ export class DashboardComponent implements OnInit {
       Tax: 5.00,
       TaxableAmnt: 0.00,
       TaxAmnt: 0.00,
-      Amount: 0.00
+      InvoiceNum:0, Amount: 0.00
     },
     {
       Name: "itemName_6",
@@ -166,7 +179,7 @@ export class DashboardComponent implements OnInit {
       Tax: 5.00,
       TaxableAmnt: 0.00,
       TaxAmnt: 0.00,
-      Amount: 0.00
+      InvoiceNum:0, Amount: 0.00
     },
     {
       Name: "itemName_7",
@@ -176,7 +189,7 @@ export class DashboardComponent implements OnInit {
       Tax: 5.00,
       TaxableAmnt: 0.00,
       TaxAmnt: 0.00,
-      Amount: 0.00
+      InvoiceNum:0, Amount: 0.00
     },
     {
       Name: "itemName_8",
@@ -186,7 +199,7 @@ export class DashboardComponent implements OnInit {
       Tax: 5.00,
       TaxableAmnt: 0.00,
       TaxAmnt: 0.00,
-      Amount: 0.00
+      InvoiceNum:0, Amount: 0.00
     }
   ];
 
@@ -203,6 +216,7 @@ export class DashboardComponent implements OnInit {
   
   CompanyList: ClientComp[] = [
     {
+      Invoice_No: 0,  
       Name: "ClientName1",
       Add1: "fzllc",
       Add2: "address2",
@@ -214,6 +228,7 @@ export class DashboardComponent implements OnInit {
       PlaceOfSupply: "Emirate"
     },
     {
+      Invoice_No: 0 ,  
       Name: "ClientName2",
       Add1: "fzllc",
       Add2: "address2",
@@ -225,6 +240,7 @@ export class DashboardComponent implements OnInit {
       PlaceOfSupply: "Emirate"
     },
     {
+      Invoice_No: 0 ,  
       Name: "ClientName3",
       Add1: "fzllc",
       Add2: "address2",
@@ -236,6 +252,7 @@ export class DashboardComponent implements OnInit {
       PlaceOfSupply: "Emirate"
     },
     {
+      Invoice_No: 0 ,  
       Name: "ClientName4",
       Add1: "fzllc",
       Add2: "address2",
@@ -247,6 +264,7 @@ export class DashboardComponent implements OnInit {
       PlaceOfSupply: "Emirate"
     },
     {
+      Invoice_No: 0 ,  
       Name: "ClientName5",
       Add1: "fzllc",
       Add2: "address2",
@@ -259,7 +277,8 @@ export class DashboardComponent implements OnInit {
     }
   ];
 
-  ClientCompany: ClientComp = {
+  ClientCompany:ClientComp={
+    Invoice_No: 0,
     Name: "",
     Add1: "",
     Add2: "",
@@ -272,10 +291,10 @@ export class DashboardComponent implements OnInit {
   };
 
   MainInvVar: MainInv = {
-    InvNoNext: 1234,
+    InvNoNext: 1919,
     Locked: false
   };
-  constructor() {}
+  constructor(private router: Router, private http: Http) {}
 
   ngOnInit() {
     this.dt = new Date();
@@ -311,11 +330,23 @@ export class DashboardComponent implements OnInit {
   }
 
   totalcheck() {
+    if(this.MainInvVar.InvNoNext==1919){
+
+      this.updateInvNum();
+
+    }else{
+      this.invoicesum.Invoice_No=this.MainInvVar.InvNoNext;
+      this.ClientCompany.Invoice_No=this.MainInvVar.InvNoNext;
+    }
+    this.currentInv=this.MainInvVar.InvNoNext;
     console.log("totalcheck");
     this.k = 0;
     this.TotalInvAmnt = 0.00;
     this.invoicesum.Total_Billed_Qty = 0.00;
     this.total_tax_amt = 0.00;
+    this.invoicesum.Total_Taxable_Amt= 0.00;
+    this.invoicesum.Total_Tax_Amt = 0.00;
+    this.invoicesum.Total_Amt =0.00;
 
     for (this.k = 0; this.k < this.InvItem.length; this.k++) {
       if (this.InvItem[this.k].Amount > 0) {
@@ -394,10 +425,137 @@ export class DashboardComponent implements OnInit {
     window.print();
   }
 
+ 
+
   SavetoDB()
   {
-    this.showinvoice=!this.showinvoice;
+    console.log("1st");
+    console.log(this.MainInvVar.InvNoNext);
     
+    this.buffer=this.MainInvVar.InvNoNext;
+
+
+    this.showinvoice=!this.showinvoice;
+    console.log(this.buffer);
+    
+    for(this.k=0;this.k<this.item_array_counter.length;this.k++){
+      this.InvItem[this.k].InvoiceNum=this.buffer;
+    }
+    this.postrequestSumm(this.invoicesum);
+   this.postrequest(this.InvItem);
+   this.postrequestComp(this.ClientCompany);
+    // console.log(buffer);
+
+  }
+
+  updateInvNum(){
+    console.log("2nd");
+    
+    this.http.get('/NextInvoiceNum/show/5a9bb669734d1d5a71e666d4').map(res => res)
+    .subscribe(res=>{
+      var data = JSON.parse(res['_body']);
+      this.MainInvVar.InvNoNext=data;
+      console.log(this.MainInvVar.InvNoNext);
+      this.buffer=this.MainInvVar.InvNoNext;
+      
+      // this.updateNextInvoiceNum();
+    });
+  
     
   }
+
+  updateNextInvoiceNum(){
+    console.log("3rd");
+    
+    this.http.get('/NextInvoiceNum/update').map(res => res)
+    .subscribe(res=>{
+      var data = JSON.parse(res['_body']);
+      console.log(data);
+      console.log(this.MainInvVar.InvNoNext);
+    });
+  }
+
+  postrequest(savethis){
+    console.log("4th");
+    
+    var k=0;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    // this.http.get('/NextInvoiceNum/show/5a9bb669734d1d5a71e666d4').map(res => res)
+    // .subscribe(res=>{
+    //   var data = JSON.parse(res['_body']);
+    //   console.log(data);
+    //   this.MainInvVar.InvNoNext=data;
+    // });
+    
+    
+   
+    for(var i=0; i<savethis.length;i++){
+        if(savethis[i].InvoiceNum!=0){
+          // savethis[i].InvoiceNum= this.MainInvVar.InvNoNext;
+          this.http.post('invoiceitems/add', savethis[i], {headers: headers})
+          .subscribe(res => {
+            // this.router.navigate(['/dashboard']);
+            console.log(res);
+            
+            k=1;
+          }, (err) => {
+            console.log(err);
+          });
+        }else{
+          console.log(i);
+          
+        }
+    } 
+    console.log(k);
+  }
+
+
+
+  postrequestSumm(savethisSumm){
+    console.log("4th");
+    
+    var k=0;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    this.http.post('Invoicesummary/add', savethisSumm, {headers: headers})
+    .subscribe(res => {
+      // this.router.navigate(['/dashboard']);
+      console.log(res);
+      
+      k=1;
+    }, (err) => {
+      console.log(err);
+    });
+
+    console.log(k);
+  }
+
+
+
+  postrequestComp(savethisComp){
+    console.log("4th");
+    
+    var k=0;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    this.http.post('Invoicecompany/add', savethisComp, {headers: headers})
+    .subscribe(res => {
+      // this.router.navigate(['/dashboard']);
+      console.log(res);
+      
+      k=1;
+    }, (err) => {
+      console.log(err);
+    });
+
+    console.log(k);
+  }
+
+
+
 }
+
+

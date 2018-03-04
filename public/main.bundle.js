@@ -187,6 +187,8 @@ module.exports = "<b>Test</b>\n<div [hidden]=\"!showinvoice\">\n   <div class=\"
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("../../../http/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__("../../../router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -197,8 +199,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
+
+
 var DashboardComponent = (function () {
-    function DashboardComponent() {
+    function DashboardComponent(router, http) {
+        this.router = router;
+        this.http = http;
         this.AddButtonShow = true;
         this.i = -1;
         this.k = 0;
@@ -208,6 +214,7 @@ var DashboardComponent = (function () {
         this.total_tax_amt = 0;
         this.InvItem = [
             {
+                InvoiceNum: 0,
                 Name: "",
                 Billed: 0.00,
                 Rate: 0.00,
@@ -218,6 +225,7 @@ var DashboardComponent = (function () {
                 Amount: 0.00
             },
             {
+                InvoiceNum: 0,
                 Name: "",
                 Billed: 0.00,
                 Rate: 0.00,
@@ -228,6 +236,7 @@ var DashboardComponent = (function () {
                 Amount: 0.00
             },
             {
+                InvoiceNum: 0,
                 Name: "",
                 Billed: 0.00,
                 Rate: 0.00,
@@ -238,6 +247,7 @@ var DashboardComponent = (function () {
                 Amount: 0.00
             },
             {
+                InvoiceNum: 0,
                 Name: "",
                 Billed: 0.00,
                 Rate: 0.00,
@@ -248,6 +258,7 @@ var DashboardComponent = (function () {
                 Amount: 0.00
             },
             {
+                InvoiceNum: 0,
                 Name: "",
                 Billed: 0.00,
                 Rate: 0.00,
@@ -258,6 +269,7 @@ var DashboardComponent = (function () {
                 Amount: 0.00
             },
             {
+                InvoiceNum: 0,
                 Name: "",
                 Billed: 0.00,
                 Rate: 0.00,
@@ -268,6 +280,7 @@ var DashboardComponent = (function () {
                 Amount: 0.00
             },
             {
+                InvoiceNum: 0,
                 Name: "",
                 Billed: 0.00,
                 Rate: 0.00,
@@ -278,6 +291,7 @@ var DashboardComponent = (function () {
                 Amount: 0.00
             },
             {
+                InvoiceNum: 0,
                 Name: "",
                 Billed: 0.00,
                 Rate: 0.00,
@@ -297,6 +311,7 @@ var DashboardComponent = (function () {
                 Tax: 5.00,
                 TaxableAmnt: 0.00,
                 TaxAmnt: 0.00,
+                InvoiceNum: 0,
                 Amount: 0.00
             },
             {
@@ -307,7 +322,7 @@ var DashboardComponent = (function () {
                 Tax: 5.00,
                 TaxableAmnt: 0.00,
                 TaxAmnt: 0.00,
-                Amount: 0.00
+                InvoiceNum: 0, Amount: 0.00
             },
             {
                 Name: "Mutton SP",
@@ -317,7 +332,7 @@ var DashboardComponent = (function () {
                 Tax: 5.00,
                 TaxableAmnt: 0.00,
                 TaxAmnt: 0.00,
-                Amount: 0.00
+                InvoiceNum: 0, Amount: 0.00
             },
             {
                 Name: "Beef SP",
@@ -327,7 +342,7 @@ var DashboardComponent = (function () {
                 Tax: 5.00,
                 TaxableAmnt: 0.00,
                 TaxAmnt: 0.00,
-                Amount: 0.00
+                InvoiceNum: 0, Amount: 0.00
             },
             {
                 Name: "Sausage",
@@ -337,7 +352,7 @@ var DashboardComponent = (function () {
                 Tax: 5.00,
                 TaxableAmnt: 0.00,
                 TaxAmnt: 0.00,
-                Amount: 0.00
+                InvoiceNum: 0, Amount: 0.00
             },
             {
                 Name: "itemName_6",
@@ -347,7 +362,7 @@ var DashboardComponent = (function () {
                 Tax: 5.00,
                 TaxableAmnt: 0.00,
                 TaxAmnt: 0.00,
-                Amount: 0.00
+                InvoiceNum: 0, Amount: 0.00
             },
             {
                 Name: "itemName_7",
@@ -357,7 +372,7 @@ var DashboardComponent = (function () {
                 Tax: 5.00,
                 TaxableAmnt: 0.00,
                 TaxAmnt: 0.00,
-                Amount: 0.00
+                InvoiceNum: 0, Amount: 0.00
             },
             {
                 Name: "itemName_8",
@@ -367,7 +382,7 @@ var DashboardComponent = (function () {
                 Tax: 5.00,
                 TaxableAmnt: 0.00,
                 TaxAmnt: 0.00,
-                Amount: 0.00
+                InvoiceNum: 0, Amount: 0.00
             }
         ];
         this.invoicesum = {
@@ -382,6 +397,7 @@ var DashboardComponent = (function () {
         };
         this.CompanyList = [
             {
+                Invoice_No: 0,
                 Name: "ClientName1",
                 Add1: "fzllc",
                 Add2: "address2",
@@ -393,6 +409,7 @@ var DashboardComponent = (function () {
                 PlaceOfSupply: "Emirate"
             },
             {
+                Invoice_No: 0,
                 Name: "ClientName2",
                 Add1: "fzllc",
                 Add2: "address2",
@@ -404,6 +421,7 @@ var DashboardComponent = (function () {
                 PlaceOfSupply: "Emirate"
             },
             {
+                Invoice_No: 0,
                 Name: "ClientName3",
                 Add1: "fzllc",
                 Add2: "address2",
@@ -415,6 +433,7 @@ var DashboardComponent = (function () {
                 PlaceOfSupply: "Emirate"
             },
             {
+                Invoice_No: 0,
                 Name: "ClientName4",
                 Add1: "fzllc",
                 Add2: "address2",
@@ -426,6 +445,7 @@ var DashboardComponent = (function () {
                 PlaceOfSupply: "Emirate"
             },
             {
+                Invoice_No: 0,
                 Name: "ClientName5",
                 Add1: "fzllc",
                 Add2: "address2",
@@ -438,6 +458,7 @@ var DashboardComponent = (function () {
             }
         ];
         this.ClientCompany = {
+            Invoice_No: 0,
             Name: "",
             Add1: "",
             Add2: "",
@@ -449,7 +470,7 @@ var DashboardComponent = (function () {
             PlaceOfSupply: ""
         };
         this.MainInvVar = {
-            InvNoNext: 1234,
+            InvNoNext: 1919,
             Locked: false
         };
     }
@@ -483,11 +504,22 @@ var DashboardComponent = (function () {
         this.totalcheck();
     };
     DashboardComponent.prototype.totalcheck = function () {
+        if (this.MainInvVar.InvNoNext == 1919) {
+            this.updateInvNum();
+        }
+        else {
+            this.invoicesum.Invoice_No = this.MainInvVar.InvNoNext;
+            this.ClientCompany.Invoice_No = this.MainInvVar.InvNoNext;
+        }
+        this.currentInv = this.MainInvVar.InvNoNext;
         console.log("totalcheck");
         this.k = 0;
         this.TotalInvAmnt = 0.00;
         this.invoicesum.Total_Billed_Qty = 0.00;
         this.total_tax_amt = 0.00;
+        this.invoicesum.Total_Taxable_Amt = 0.00;
+        this.invoicesum.Total_Tax_Amt = 0.00;
+        this.invoicesum.Total_Amt = 0.00;
         for (this.k = 0; this.k < this.InvItem.length; this.k++) {
             if (this.InvItem[this.k].Amount > 0) {
                 this.TotalInvAmnt += this.InvItem[this.k].Amount;
@@ -558,7 +590,99 @@ var DashboardComponent = (function () {
         window.print();
     };
     DashboardComponent.prototype.SavetoDB = function () {
+        console.log("1st");
+        console.log(this.MainInvVar.InvNoNext);
+        this.buffer = this.MainInvVar.InvNoNext;
         this.showinvoice = !this.showinvoice;
+        console.log(this.buffer);
+        for (this.k = 0; this.k < this.item_array_counter.length; this.k++) {
+            this.InvItem[this.k].InvoiceNum = this.buffer;
+        }
+        this.postrequestSumm(this.invoicesum);
+        this.postrequest(this.InvItem);
+        this.postrequestComp(this.ClientCompany);
+        // console.log(buffer);
+    };
+    DashboardComponent.prototype.updateInvNum = function () {
+        var _this = this;
+        console.log("2nd");
+        this.http.get('/NextInvoiceNum/show/5a9bb669734d1d5a71e666d4').map(function (res) { return res; })
+            .subscribe(function (res) {
+            var data = JSON.parse(res['_body']);
+            _this.MainInvVar.InvNoNext = data;
+            console.log(_this.MainInvVar.InvNoNext);
+            _this.buffer = _this.MainInvVar.InvNoNext;
+            // this.updateNextInvoiceNum();
+        });
+    };
+    DashboardComponent.prototype.updateNextInvoiceNum = function () {
+        var _this = this;
+        console.log("3rd");
+        this.http.get('/NextInvoiceNum/update').map(function (res) { return res; })
+            .subscribe(function (res) {
+            var data = JSON.parse(res['_body']);
+            console.log(data);
+            console.log(_this.MainInvVar.InvNoNext);
+        });
+    };
+    DashboardComponent.prototype.postrequest = function (savethis) {
+        console.log("4th");
+        var k = 0;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        // this.http.get('/NextInvoiceNum/show/5a9bb669734d1d5a71e666d4').map(res => res)
+        // .subscribe(res=>{
+        //   var data = JSON.parse(res['_body']);
+        //   console.log(data);
+        //   this.MainInvVar.InvNoNext=data;
+        // });
+        for (var i = 0; i < savethis.length; i++) {
+            if (savethis[i].InvoiceNum != 0) {
+                // savethis[i].InvoiceNum= this.MainInvVar.InvNoNext;
+                this.http.post('invoiceitems/add', savethis[i], { headers: headers })
+                    .subscribe(function (res) {
+                    // this.router.navigate(['/dashboard']);
+                    console.log(res);
+                    k = 1;
+                }, function (err) {
+                    console.log(err);
+                });
+            }
+            else {
+                console.log(i);
+            }
+        }
+        console.log(k);
+    };
+    DashboardComponent.prototype.postrequestSumm = function (savethisSumm) {
+        console.log("4th");
+        var k = 0;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        this.http.post('Invoicesummary/add', savethisSumm, { headers: headers })
+            .subscribe(function (res) {
+            // this.router.navigate(['/dashboard']);
+            console.log(res);
+            k = 1;
+        }, function (err) {
+            console.log(err);
+        });
+        console.log(k);
+    };
+    DashboardComponent.prototype.postrequestComp = function (savethisComp) {
+        console.log("4th");
+        var k = 0;
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_http__["Headers"]();
+        headers.append('Content-Type', 'application/json');
+        this.http.post('Invoicecompany/add', savethisComp, { headers: headers })
+            .subscribe(function (res) {
+            // this.router.navigate(['/dashboard']);
+            console.log(res);
+            k = 1;
+        }, function (err) {
+            console.log(err);
+        });
+        console.log(k);
     };
     DashboardComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Component"])({
@@ -566,7 +690,7 @@ var DashboardComponent = (function () {
             template: __webpack_require__("../../../../../src/app/components/dashboard/dashboard.component.html"),
             styles: [__webpack_require__("../../../../../src/app/components/dashboard/dashboard.component.css")]
         }),
-        __metadata("design:paramtypes", [])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_router__["a" /* Router */], __WEBPACK_IMPORTED_MODULE_1__angular_http__["Http"]])
     ], DashboardComponent);
     return DashboardComponent;
 }());

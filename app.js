@@ -6,6 +6,13 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 coinRoutes = require('./expressRoutes/coinRoutes');
+invoiceitemRoutes = require('./expressRoutes/invoiceitemRoutes');
+invoiceNumRoutes = require('./expressRoutes/invoiceNumRoutes');
+invoiceSumRoutes = require('./expressRoutes/invoiceSumRoutes');
+invoiceCompRoutes = require('./expressRoutes/invoiceCompRoutes');
+
+invoiceitemMod = require('./models/InvoiceItem');
+// invoiceitemMod = require('./models/NextInvoiceNumber');
 
 
 // Connect To Database (NEW) But not working!!!!!!!!!! (because of secret in db.js!!!!!)
@@ -47,6 +54,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Body Parser Middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // Passport Middleware
 app.use(passport.initialize());
@@ -56,6 +64,10 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/coins', coinRoutes);
+app.use('/invoiceitems', invoiceitemRoutes);
+app.use('/NextInvoiceNum', invoiceNumRoutes);
+app.use('/Invoicesummary', invoiceSumRoutes);
+app.use('/Invoicecompany', invoiceCompRoutes);
 
 // app.use('/coins', coins);
 
