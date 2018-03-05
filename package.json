@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "MEAN stack authentication app",
   "main": "app.js",
+  "engines": {
+    "npm": "^5.6.x",
+    "node": "^8.9.4"
+  },
   "scripts": {
     "start": "node app"
   },
