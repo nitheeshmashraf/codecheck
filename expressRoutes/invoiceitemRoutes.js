@@ -10,7 +10,7 @@ var InvoiceItem = require('../models/InvoiceItem');
 invoiceitemRoutes.route('/add').post(function (req, res) {
  
   var invoiceitem = new InvoiceItem(req.body);
-  console.log(req.body);
+  // console.log(req.body);
   console.log("its here");
    invoiceitem.save()
     .then(item => {

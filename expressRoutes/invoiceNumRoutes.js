@@ -10,7 +10,7 @@ var InvoiceNum = require('../models/NextInvoiceNumber');
 invoiceNumRoutes.route('/add').post(function (req, res) {
  
   var invoicenum = new InvoiceNum(req.body);
-  console.log(req);
+  // console.log(req);
   console.log("its here");
    invoicenum.save()
     .then(item => {

@@ -10,7 +10,7 @@ var invoiceComp = require('../models/InvCompany');
 invoiceCompRoutes.route('/add').post(function (req, res) {
  
   var invoicecompany = new invoiceComp(req.body);
-  console.log(req);
+  // console.log(req);
   console.log("its here");
   invoicecompany.save()
     .then(item => {

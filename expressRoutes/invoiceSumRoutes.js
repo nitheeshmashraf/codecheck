@@ -10,7 +10,7 @@ var invoiceSum = require('../models/InvoiceSummary');
 invoiceSumRoutes.route('/add').post(function (req, res) {
  
   var invoicesum = new invoiceSum(req.body);
-  console.log(req);
+  // console.log(req);
   console.log("its here");
    invoicesum.save()
     .then(item => {

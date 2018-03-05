@@ -427,8 +427,7 @@ export class DashboardComponent implements OnInit {
 
  
 
-  SavetoDB()
-  {
+  SavetoDB(){
     console.log("1st");
     console.log(this.MainInvVar.InvNoNext);
     
@@ -496,8 +495,9 @@ export class DashboardComponent implements OnInit {
           this.http.post('invoiceitems/add', savethis[i], {headers: headers})
           .subscribe(res => {
             // this.router.navigate(['/dashboard']);
-            console.log(res);
-            
+            // console.log(res);
+      console.log("Saved item Vs Inv");
+      
             k=1;
           }, (err) => {
             console.log(err);
@@ -522,7 +522,8 @@ export class DashboardComponent implements OnInit {
     this.http.post('Invoicesummary/add', savethisSumm, {headers: headers})
     .subscribe(res => {
       // this.router.navigate(['/dashboard']);
-      console.log(res);
+      console.log("Saved Sum Vs Inv");
+      // console.log(res);
       
       k=1;
     }, (err) => {
@@ -544,7 +545,7 @@ export class DashboardComponent implements OnInit {
     this.http.post('Invoicecompany/add', savethisComp, {headers: headers})
     .subscribe(res => {
       // this.router.navigate(['/dashboard']);
-      console.log(res);
+      console.log("Saved company Vs Inv");
       
       k=1;
     }, (err) => {
